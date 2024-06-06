@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Laravel\Lumen\Routing\Router $router */
-
+use App\Http\Controllers\Client\IndexController;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,3 +16,10 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+$router->get('/','Client\IndexController@index');
+$router->get('/','Client\HomeController@index');
+$router->get('/product','Client\ProductController@index');
+$router->get('/product-detail','Client\ProductDetailController@index');
+$router->get('/about','Client\AboutController@index');
+$router->get('/contact','Client\ContactController@index');
+$router->get('/blog','Client\BlogController@index');
