@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\ThemeCategory;
+
+
 
 return new class extends Migration
 {
@@ -15,12 +18,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price', 10, 2);
+            $table->integer('price')->comment('Giá của themes');
             $table->string('thumbnail');
             $table->string('slug')->unique();
-            $table->string('status');
+            $table->tinyInteger('status')->comment('trạng thái');
             $table->string('file');
-            $table->foreignId('category_id');
+            $table->foreignIdFor(ThemeCategory::class)->comment('Danh mục theme');
             $table->timestamps();
         });
     }
