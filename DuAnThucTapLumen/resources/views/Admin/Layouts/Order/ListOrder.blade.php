@@ -37,7 +37,7 @@
                                     <td>0703374380</td>
                                     <td>Cần Thơ</td>
                                     <td>
-                                        <a href="{{ url('/admin-editorder') }}" class="btn btn-primary">Sửa</a>
+                                        <a href="{{ url('/dashboard/editorder') }}" class="btn btn-primary">Sửa</a>
                                         <a href="#"class="btn btn-danger">Xóa</a>
                                     </td>
                                 </tr>

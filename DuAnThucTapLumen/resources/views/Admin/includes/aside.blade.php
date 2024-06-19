@@ -13,7 +13,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> --}}
         <div class="info">
-          <a href="#" class="d-block ">Trang quản trị</a>
+          <a href="/dashboard/  " class="d-block ">Trang quản trị</a>
         </div>
       </div>
 
@@ -64,7 +64,7 @@
             </ul>
           </li> --}}
           <li class="nav-item">
-            <a href="{{ url('/admin-user') }}" class="nav-link">
+            <a href="{{ url('/dashboard/user') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý người dùng
@@ -73,7 +73,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/admin-cate') }}" class="nav-link">
+            <a href="{{ url('/dashboard/cate') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý danh mục
@@ -82,7 +82,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/admin-theme') }}" class="nav-link">
+            <a href="{{ url('/dashboard/theme') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý Theme
@@ -91,7 +91,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/admin-license') }}" class="nav-link">
+            <a href="{{ url('/dashboard/license') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý Giấy phép
@@ -100,7 +100,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/admin-order') }}" class="nav-link">
+            <a href="{{ url('/dashboard/order') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý Đơn hàng

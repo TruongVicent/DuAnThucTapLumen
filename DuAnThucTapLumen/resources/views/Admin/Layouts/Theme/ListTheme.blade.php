@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Danh sách theme</h3>
-                        <a href="{{ url('/admin-addtheme') }}" class="btn btn-primary float-right"> Thêm mới</a>
+                        <a href="{{ url('/dashboard/addtheme') }}" class="btn btn-primary float-right"> Thêm mới</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -34,7 +34,7 @@
                                     <td>Live</td>
                                     <td>theme.rar</td>
                                     <td>
-                                        <a href="{{ url('/admin-edittheme') }}" class="btn btn-primary">Sửa</a>
+                                        <a href="{{ url('/dashboard/edittheme') }}" class="btn btn-primary">Sửa</a>
                                         <a href="#"class="btn btn-danger">Xóa</a>
                                     </td>
                                 </tr>
