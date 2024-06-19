@@ -12,7 +12,6 @@ class Cart extends Model
     protected $table = 'carts';
 
     protected $fillable = [
-        'verification',
         'fullname',
         'email',
         // 'user_id',
