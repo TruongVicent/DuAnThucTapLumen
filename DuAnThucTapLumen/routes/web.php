@@ -26,8 +26,29 @@ $router->get('/contact', 'Client\ContactController@index');
 $router->get('/blog', 'Client\BlogController@index');
 
 
+//------------------------TEST-----------------------//
+$router->get('cart', ['as' => 'cart', 'uses' => 'Client\CartController@index']);
+
+$router->get('cart/{id}', ['as' => 'cart.show', 'uses' => 'Client\CartController@show']);
+
+$router->post('cart', ['as' => 'cart.store', 'uses' => 'Client\CartController@store']);
+$router->put('cart/{id}', ['as' => 'cart.update', 'uses' => 'Client\CartController@update']);
+$router->delete('cart/{id}', ['as' => 'cart.delete', 'uses' => 'Client\CartController@delete']);
+
+
+$router->post('register', 'AuthController@register');
+
+$router->post('login', 'AuthController@login');
+
+
+$router->group(['middleware' => 'auth'], function () use ($router) {
+    $router->get('logout', 'AuthController@logout');
+    $router->post('refresh', 'AuthController@refresh');
+  });
 
 //------------------------ADMIN-----------------------//
+
+
 
 // $router->get('dashboard','Admin\DashboardController@dashboard');
 

@@ -3,9 +3,9 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 
-class ContactController extends Controller{
+class CartDetailController extends Controller{
 
     public function index(){
-        return view('Client.Layouts.Contact');
+        
     }
 }

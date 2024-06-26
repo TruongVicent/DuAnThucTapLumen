@@ -12,8 +12,13 @@ class Cart extends Model
     protected $table = 'carts';
 
     protected $fillable = [
-        'verification', 'fullname', 'email', 'user_id', 'status',
+        'verification',
+        'fullname',
+        'email',
+        // 'user_id',
+        'status',
     ];
 
+    protected $hidden = ['created_at', 'updated_at'];
    
 }
