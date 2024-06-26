@@ -83,7 +83,6 @@ class AuthController extends Controller
             ]);
         }
     }
-
     protected function respondWithToken($token)
     {
         return response()->json([
