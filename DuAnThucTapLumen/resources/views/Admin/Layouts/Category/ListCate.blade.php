@@ -1,5 +1,4 @@
 @extends('indexAdmin')
-
 @section('adminMain')
     <div class="content-wrapper">
         <section class="content">
@@ -13,23 +12,28 @@
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Tên danh mục</th>
-                                    <th>Trạng thái</th>
-                                    <th>Thao tác</th>
-                                </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên danh mục</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
                             </thead>
                             <tbody>
+                            @foreach ($categories as $category)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Đời sống</td>
-                                    <td>Live</td>
+                                    <td>{{ $category->id }}</td>
+                                    <td>{{ $category->name }}</td>
+                                    <td>{{ $category->status }}</td>
                                     <td>
-                                        <a href="{{ url('/dashboard/editcate') }}" class="btn btn-primary">Sửa</a>
-                                        <a href="#"class="btn btn-danger">Xóa</a>
+                                        <a href="{{ url('/dashboard/editcate' . $category->id) }}"
+                                           class="btn btn-primary">Sửa</a>
+                                        <button class="btn btn-danger" onclick="deleteCategory({{ $category->id }})">
+                                            Xóa
+                                        </button>
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -49,4 +53,26 @@
         </section>
         <!-- /.content -->
     </div>
+    <script>
+        function deleteCategory(id) {
+            if (confirm('Bạn có chắc chắn muốn xóa danh mục này?')) {
+                fetch('/dashboard/delete/' + id, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(data.success);
+                            location.reload(); // Tự động tải lại trang
+                        } else {
+                            alert('Đã xảy ra lỗi khi xóa danh mục.');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+    </script>
 @endsection

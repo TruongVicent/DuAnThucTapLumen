@@ -18,26 +18,32 @@
                                     <th>Tên theme</th>
                                     <th>Giá</th>
                                     <th>Hình ảnh</th>
-                                    <th>Đường dẫn</th>
-                                    <th>Trạng thái</th>
+{{--                                    <th>Đường dẫn</th>--}}
+{{--                                    <th>Trạng thái</th>--}}
                                     <th>Thư mục</th>
+                                    <th>Mô tả</th>
+                                    <th>Danh mục</th>
                                     <th>Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach ($themes as $theme)
                                 <tr>
-                                    <td>1</td>
-                                    <td>adminLTE</td>
-                                    <td>1.000.000 vnđ</td>
-                                    <td>ảnh1.jpg</td>
-                                    <td>slug-1</td>
-                                    <td>Live</td>
-                                    <td>theme.rar</td>
+                                    <td>{{ $theme->id }}</td>
+                                    <td>{{ $theme->name }}</td>
+                                    <td>{{ $theme->price }}</td>
+                                    <td>{{ $theme->thumbnail}}</td>
+{{--                                    <td>{{ $theme->slug}}</td>--}}
+{{--                                    <td>{{ $theme->status}}</td>--}}
+                                    <td>{{ $theme->file}}</td>
+                                    <td>{{$theme->description}}</td>
+                                    <td>{{ $theme->category->name ?? ''}}</td> <!-- Hiển thị tên danh mục -->
                                     <td>
-                                        <a href="{{ url('/dashboard/edittheme') }}" class="btn btn-primary">Sửa</a>
-                                        <a href="#"class="btn btn-danger">Xóa</a>
+                                        <a href="{{ url('/dashboard/edit/' . $theme->id) }}" class="btn btn-primary">Sửa</a>
+                                        <button onclick="deleteTheme({{ $theme->id }})" class="btn btn-danger">Xóa</button>
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -52,9 +58,30 @@
                         </ul>
                     </div>
                 </div>
-
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
     </div>
+    <script>
+        function deleteTheme(id) {
+            if (confirm('Bạn có chắc chắn muốn xóa theme này?')) {
+                fetch('/dashboard/deletetheme/' + id, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(data.success);
+                            location.reload(); // Reload the page
+                        } else {
+                            alert('Đã xảy ra lỗi khi xóa theme.');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+    </script>
+
 @endsection
