@@ -16,14 +16,14 @@ return new class extends Migration
     {
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->integer('price')->comment('Giá của themes');
-            $table->string('thumbnail');
-            $table->string('slug')->unique();
-            $table->tinyInteger('status')->comment('trạng thái');
-            $table->string('file');
-            $table->foreignIdFor(ThemeCategory::class)->comment('Danh mục theme');
+            $table->string('name')->comment('Tên của theme');
+            $table->text('description')->nullable()->comment('Mô tả của theme');
+            $table->integer('price')->comment('Giá của theme');
+            $table->string('thumbnail')->comment('Ảnh đại diện của theme');
+            $table->string('slug')->unique()->comment('Slug của theme');
+            $table->tinyInteger('status')->comment('Trạng thái của theme: 0 - Inactive, 1 - Active');
+            $table->string('file')->comment('Đường dẫn file của theme');
+            $table->foreignIdFor(ThemeCategory::class)->comment('ID danh mục của theme')->constrained();
             $table->timestamps();
         });
     }

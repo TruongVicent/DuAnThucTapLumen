@@ -43,12 +43,17 @@ $router->group(['prefix' => 'dashboard'], function () use ($router) {
 
     $router->get('theme', 'Admin\ThemeController@index');
     $router->get('addtheme', 'Admin\ThemeController@add');
-    $router->get('edittheme', 'Admin\ThemeController@edit');
-
+    $router->post('add-theme', 'Admin\ThemeController@addTheme');
+    $router->get('edit/{id}', 'Admin\ThemeController@edit');
+    $router->post('update/{id}', 'Admin\ThemeController@update');
+    $router->delete('deletetheme/{id}', 'Admin\ThemeController@delete');
 
     $router->get('cate', 'Admin\CategoryController@index');
     $router->get('addcate', 'Admin\CategoryController@add');
-    $router->get('editcate', 'Admin\CategoryController@edit');
+    $router->post('add-category', 'Admin\CategoryController@addCategory');
+    $router->get('editcate{id}', 'Admin\CategoryController@edit');
+    $router->post('update/{id}', 'Admin\CategoryController@update');
+    $router->delete('delete/{id}', 'Admin\CategoryController@delete');
 
 
     $router->get('license', 'Admin\LicensesController@index');
