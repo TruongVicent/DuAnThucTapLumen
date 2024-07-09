@@ -35,16 +35,16 @@ $router->post('cart', ['as' => 'cart.store', 'uses' => 'Client\CartController@st
 $router->put('cart/{id}', ['as' => 'cart.update', 'uses' => 'Client\CartController@update']);
 $router->delete('cart/{id}', ['as' => 'cart.delete', 'uses' => 'Client\CartController@delete']);
 
-
-$router->post('register', 'AuthController@register');
+$router->get('signin', 'Admin\UserController@signin');
 
 $router->post('login', 'AuthController@login');
+$router->post('register', 'AuthController@register');
+
 
 
 $router->group(['middleware' => 'auth'], function () use ($router) {
-    $router->get('logout', 'AuthController@logout');
-    $router->post('refresh', 'AuthController@refresh');
-  });
+    $router->post('user-profile', 'AuthController@me');
+});
 
 //------------------------ADMIN-----------------------//
 

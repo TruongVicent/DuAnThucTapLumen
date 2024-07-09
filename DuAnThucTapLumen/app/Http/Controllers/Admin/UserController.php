@@ -15,4 +15,7 @@ class UserController extends Controller{
     public function edit(){
         return view('Admin.Layouts.User.EditUser');
     }
+    public function signin(){
+        return view('Client.Layouts.Login');
+    }
 }

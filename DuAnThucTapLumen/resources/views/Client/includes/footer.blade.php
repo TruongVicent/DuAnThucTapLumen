@@ -92,6 +92,31 @@
 
 <!-- Custom script for this template -->
 <script src="assets/js/script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var loginForm = document.getElementById('login-form');
+        var registerForm = document.getElementById('register-form');
+        var loginFormLink = document.getElementById('login-form-link');
+        var registerFormLink = document.getElementById('register-form-link');
+
+        loginFormLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+            loginFormLink.classList.add('active');
+            registerFormLink.classList.remove('active');
+        });
+
+        registerFormLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+            registerFormLink.classList.add('active');
+            loginFormLink.classList.remove('active');
+        });
+    });
+    
+</script>
 </body>
 
 <!-- Mirrored from wpocean.com/html/tf/edefy/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 May 2024 07:28:24 GMT -->

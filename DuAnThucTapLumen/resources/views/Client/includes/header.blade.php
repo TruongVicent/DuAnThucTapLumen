@@ -92,7 +92,8 @@
                             </div>
                         </div>
                         <div class="btns">
-                            <a href="#" class="theme-btn">My account</a>
+                                <a href="{{ url('/user-profile')}}" class="theme-btn">My account</a>
+                                <a href="{{ url('/signin')}}" class="theme-btn">login</a>
                         </div>
                     </div>                    
                 </div><!-- end of container -->

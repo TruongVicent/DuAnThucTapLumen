@@ -21,7 +21,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $table = 'users';
     protected $fillable = [
-        'name', 'email',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -31,6 +31,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = [
         'password',
+        'remember_token',
+    ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
     public function getJWTIdentifier()
     {
