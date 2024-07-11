@@ -51,9 +51,13 @@ $router->group(['prefix' => 'dashboard'], function () use ($router) {
     $router->get('editcate', 'Admin\CategoryController@edit');
 
 
-    $router->get('license', 'Admin\LicensesController@index');
-    $router->get('addlicense', 'Admin\LicensesController@add');
-    $router->get('editlicense', 'Admin\LicensesController@edit');
+    $router->get('/license', 'Admin\LicensesController@index');
+    $router->get('/license/add', 'Admin\LicensesController@show');
+    $router->post('/license/adds', 'Admin\LicensesController@store');
+    $router->get('/license/edit/{id}', 'Admin\LicensesController@edit');
+    $router->post('/license/update/{id}', 'Admin\LicensesController@update');
+    $router->delete('/license/delete/{id}', 'Admin\LicensesController@delete');
+
 
     $router->get('order', 'Admin\OrderController@index');
     $router->get('editorder', 'Admin\OrderController@edit');
