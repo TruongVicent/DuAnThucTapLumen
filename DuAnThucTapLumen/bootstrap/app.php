@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
     dirname(__DIR__)
@@ -24,7 +24,6 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->withFacades();
-
 $app->withEloquent();
 
 /*
@@ -72,10 +71,13 @@ $app->configure('auth');
 |
 */
 
- $app->middleware([
-     App\Http\Middleware\ExampleMiddleware::class
- ]);
+$app->middleware([
+    App\Http\Middleware\ExampleMiddleware::class,
+    \Illuminate\Session\Middleware\StartSession::class,
+    \Illuminate\Cookie\Middleware\EncryptCookies::class,
+    // \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
 
+]);
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
@@ -91,15 +93,22 @@ $app->routeMiddleware([
 |
 */
 
- $app->register(App\Providers\AppServiceProvider::class);
- $app->register(App\Providers\AuthServiceProvider::class);
- $app->register(App\Providers\EventServiceProvider::class);
+
+$app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\EventServiceProvider::class);
+//  $app->register(Illuminate\Session\SessionServiceProvider::class);
+//  $app->register(Illuminate\Cookie\CookieServiceProvider::class);
 
 
 // add new $app
-$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+// $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
-$app->configure('jwt');
+// $app->configure('jwt');
+// $app->configure('session');
+$app->register(Illuminate\Cookie\CookieServiceProvider::class);
+
+class_alias(Illuminate\Support\Facades\Cookie::class, 'Cookie');
 
 
 /*
@@ -116,8 +125,15 @@ $app->configure('jwt');
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
-    require __DIR__.'/../routes/web.php';
+    require __DIR__ . '/../routes/web.php';
+});
+
+$app->singleton(Illuminate\Session\SessionManager::class, function () use ($app) {
+    return $app->loadComponent('session', Illuminate\Session\SessionServiceProvider::class, 'session');
+});
+
+$app->singleton('session.store', function () use ($app) {
+    return $app->loadComponent('session', Illuminate\Session\SessionServiceProvider::class, 'session.store');
 });
 
 return $app;
-

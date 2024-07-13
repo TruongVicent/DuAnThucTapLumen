@@ -16,8 +16,8 @@ return new class extends Migration
             // $table->string('verification')->comment('Mã OTP xác nhận');
             $table->string('fullname')->comment('Tên người dùng');
             $table->string('email')->comment('Email người dùng');
-            // $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->constrained()->cascadeOnDelete();
             $table->integer('status')->comment('Trạng thái');
             $table->timestamps();
             

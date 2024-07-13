@@ -6,10 +6,13 @@
     "type": "project",
     "require": {
         "php": "^8.1",
+        "illuminate/auth": "^11.15",
+        "illuminate/cookie": "^11.15",
+        "illuminate/session": "^11.15",
         "illuminate/view": "^11.14",
+        "laravel/helpers": "^1.7",
         "laravel/lumen-framework": "^11.0",
-        "psy/psysh": "^0.12.4",
-        "tymon/jwt-auth": "^2.1"
+        "psy/psysh": "^0.12.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

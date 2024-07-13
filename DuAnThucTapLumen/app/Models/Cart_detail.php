@@ -14,8 +14,8 @@ class Cart_detail extends Model
     protected $fillable = [
         'price',
         'thumbnail',
-        // 'cart_id',
-        // 'theme_id',
+        'cart_id',
+        'theme_id',
         'theme_name',
     ];
     protected $hidden = ['created_at', 'updated_at'];

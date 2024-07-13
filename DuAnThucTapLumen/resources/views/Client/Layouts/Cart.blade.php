@@ -5,10 +5,10 @@
         <div class="container">
             <div class="row">
                 <div class="col col-xs-12">
-                    <h2>About us</h2>
+                    <h2>Giỏ hàng</h2>
                     <ol class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li>About us</li>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li>Giỏ hàng</li>
                     </ol>
                 </div>
             </div> <!-- end row -->
@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row">
                 <div class="col col-md-6">
-                    <h2>GIỎ HÀNG</h2>
+                    <h2>Giỏ hàng của bạn</h2>
                     <ul id="cart-item"></ul>
                 </div>
                 <div class="col col-md-6">

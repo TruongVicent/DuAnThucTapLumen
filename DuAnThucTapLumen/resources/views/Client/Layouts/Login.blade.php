@@ -37,7 +37,7 @@
                                                     method="POST" role="form" style="display: block;">
                                                     <div class="form-group">
                                                         <input type="email" name="email" id="email" tabindex="1"
-                                                            class="form-control" placeholder="Email Address" value="">
+                                                            class="form-control" placeholder="Email Address">
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="password" name="password" id="password" tabindex="2"

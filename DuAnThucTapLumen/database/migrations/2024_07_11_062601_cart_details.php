@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('theme_name')->comment('Tên sản phẩm');
             $table->integer('price')->comment('Đơn giá');
             $table->string('thumbnail')->comment('Ảnh sản phẩm');
-            // $table->unsignedBigInteger('cart_id');
-            // $table->foreign('cart_id')->references('id')->on('carts')->constrained()->cascadeOnDelete();
-            // $table->unsignedBigInteger('theme_id');
-            // $table->foreign('theme_id')->references('id')->on('themes')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('cart_id');
+            $table->foreign('cart_id')->references('id')->on('carts')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('theme_id');
+            $table->foreign('theme_id')->references('id')->on('themes')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

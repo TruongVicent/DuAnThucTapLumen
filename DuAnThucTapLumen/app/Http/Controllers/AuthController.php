@@ -2,23 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Str;
 class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register', 'refresh', 'logout']]);
+        
     }
+
     public function register(Request $request)
     {
-
         $this->validate($request, [
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
@@ -29,70 +26,49 @@ class AuthController extends Controller
             $data = new User;
             $data->name = $request->get('name');
             $data->email = $request->get('email');
-            $data->password = app('hash')->make($request->get('password'));
+            $data->password = Hash::make($request->get('password'));
             $data->save();
-            
-            return redirect('/signin');
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Failed!'], 422);
-        }
-    }
 
-    public function me()
-    {
-        $user = auth()->user();
-        if ($user) {
-            dd($user); // Debug user data
-        } else {
-            dd('No user'); // Debug no user
+            return redirect('/');
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to register!'], 422);
         }
-        return response()->json(auth()->user());
     }
 
     public function login(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|string',
+            'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-        $credentials = $request->only(['email', 'password']);
-        if (!$token = Auth::setTTL(7200)->attempt($credentials)) {
-            return response()->json(['message' => 'Unauthorized'], 401);
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $users = Auth::user();
+            // dd($request->userid);
+            return redirect('/');
+        } else {
+            return response()->json(['status' => 'fail'], 401);
         }
-        return redirect('/');
-        // return response()->json(['message' => 'sucssess', 'user' => $token], 200);
     }
 
-    public function refresh()
+    public function show()
     {
-        return $this->respondWithToken(auth()->refresh());
-    }
-    public function logout()
-    {
-        $token = auth()->tokenById(Auth::user()->userid);
-        try {
-            auth()->logout(true);
-            return response()->json([
-                'status' => 'success',
-                'message' => 'User logged out successfully'
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'failed',
-                'message' => 'Sorry, the user cannot be logged out'
-            ]);
+        $user = Auth::user();
+        if ($user) {
+            return response()->json($user, 200);
+        } else {
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
     }
-    protected function respondWithToken($token)
+
+    public function logout(Request $request)
     {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 120
-        ]);
-    }
-    public function guard()
-    {
-        return Auth::guard();
+        $user = Auth::user();
+        if ($user) {
+            Auth::logout();
+            return redirect('/');
+        } else {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
     }
 }

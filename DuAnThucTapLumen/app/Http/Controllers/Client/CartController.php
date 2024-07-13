@@ -15,7 +15,15 @@ class CartController extends Controller{
         // else
        return Cart::all();
     }
-    
+    public function list(Request $request){
+
+        // if ($request->has('fullname')){
+        //     return Cart::where($request->fullname)
+        //                 ->orWhere('fullname', 'LIKE', '%' . $request->fullname . '%')->get();
+        // }
+        // else
+        return view('Client.Layouts.Cart');
+    }
     public function show($id){
         return Cart::findOrFail($id);
      }

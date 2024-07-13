@@ -16,7 +16,11 @@ return new class extends Migration
             $table->string('name')->nullable()->comment('Tên khách hàng');
             $table->string('email')->comment('Email khách hàng');
             $table->string('password')->comment('Mật khẩu');
-            $table->string('role')->comment('Phân quyền user');
+            $table->string('role')->default(0)->comment('Phân quyền user');
+            $table->string('subdomain')->nullable();
+            $table->string('api_key')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
