@@ -82,6 +82,13 @@ $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
 
+
+// Đăng ký Kernel
+$app->singleton(Illuminate\Contracts\Console\Kernel::class, App\Console\Kernel::class);
+
+// Đăng ký lệnh
+$app->register(App\Providers\AppServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers

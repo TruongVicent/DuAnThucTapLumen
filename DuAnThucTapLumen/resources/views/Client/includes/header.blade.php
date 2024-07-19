@@ -50,7 +50,11 @@
 
                     <div class="cart-search-contact ">
                         <div class="mini-cart">
+                            @if (Auth::check())
                             <a href="{{ url('/cart/' . Auth::user()->id)}}" class="cart-toggle-btn"> <i class="fi flaticon-bag"></i></a>
+                            @else
+                            <a href="{{ url('/')}}" class="cart-toggle-btn"> <i class="fi flaticon-bag"></i></a>
+                            @endif
                         </div>
                         <div class="btns ">
                             @if(Auth::check())

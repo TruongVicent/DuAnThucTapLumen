@@ -32,9 +32,10 @@
                                     <td>{{ $theme->id }}</td>
                                     <td>{{ $theme->name }}</td>
                                     <td>{{ $theme->price }}</td>
-                                    <td><img src="{{ url('/storage/' . $theme->thumbnail) }}" alt="{{ $theme->name }}"></td>                                    </td>
-{{--                                    <td>{{ $theme->slug}}</td>--}}
-{{--                                    <td>{{ $theme->status}}</td>--}}
+                                    
+                                    <td>
+                                        <img src="{{ url('storage/' . $theme->thumbnail) }}" alt="{{ $theme->name }}" style="max-width: 100px; max-height: 100px;">
+                                    </td>
                                     <td>{{ $theme->file}}</td>
                                     <td>{{$theme->description}}</td>
                                     <td>{{ $theme->category->name ?? ''}}</td> <!-- Hiển thị tên danh mục -->
