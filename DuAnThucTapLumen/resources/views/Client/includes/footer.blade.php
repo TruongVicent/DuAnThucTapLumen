@@ -84,14 +84,14 @@
 
 <!-- All JavaScript files
 ================================================== -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="{{ url('../assets/js/jquery.min.js') }}"></script>
+<script src="{{ url('../assets/js/bootstrap.min.js') }}"></script>
 
 <!-- Plugins for this template -->
-<script src="assets/js/jquery-plugin-collection.js"></script>
+<script src="{{ url('../assets/js/jquery-plugin-collection.js') }}"></script>
 
 <!-- Custom script for this template -->
-<script src="assets/js/script.js"></script>
+<script src="{{ url('../assets/js/script.js') }}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var loginForm = document.getElementById('login-form');

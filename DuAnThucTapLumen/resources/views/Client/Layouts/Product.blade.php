@@ -5,11 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col col-xs-12">
-                    <h2>Best HTML Template</h2>
-                    <ol class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Best HTML Template</li>
-                    </ol>
+                    <h2>Danh sách giao diện</h2>
                 </div>
             </div> <!-- end row -->
         </div> <!-- end container -->
@@ -54,186 +50,37 @@
                 <div class="col col-md-8">
                     <div class="all-products">
                         <div class="product-grids clearfix">
-                            <div class="grid">
-                                <div class="product-img-tag">
-                                    <img src="assets/images/exclusive-product/img-1.jpg" alt>
-                                    <div class="badge">Trending</div>
-                                </div>
-                                <div class="product-details-wrap">
-                                    <div class="product-details">
-                                        <h4><a href="#">Canlye - Multipurpose HTML Template</a></h4>
-                                        <div class="author">By <a href="#">wpOcean</a></div>
-                                        <div class="rating">
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <span>&nbsp; (08)</span>
-                                        </div>
+                            @foreach ($product as $pro)
+                                <div class="grid">
+                                    <div class="product-img-tag">
+                                        <img src="{{ $pro->thumbnail }}" alt="nam">
+                                        <div class="badge">Trending</div>
                                     </div>
-                                    <div class="product-footer">
-                                        <div class="price">
-                                            <h5>$49.00</h5>
+                                    <div class="product-details-wrap">
+                                        <div class="product-details">
+                                            <h4><a href="#">{{ $pro->name }}</a></h4>
                                         </div>
-                                        <div class="live-preview-cart">
-                                            <div class="live-preview"><a href="#">Preview</a></div>
-                                            <div class="cart"><a href="#"><i
-                                                        class="fi flaticon-shopping-cart"></i></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grid">
-                                <div class="product-img-tag">
-                                    <img src="assets/images/exclusive-product/img-2.jpg" alt>
-                                    <div class="badge badge-feature">Featured</div>
-                                </div>
-                                <div class="product-details-wrap">
-                                    <div class="product-details">
-                                        <h4><a href="#">Sportyy - Gym & Sports Theme</a></h4>
-                                        <div class="author">By <a href="#">wpOcean</a></div>
-                                        <div class="rating">
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <span>&nbsp; (08)</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-footer">
-                                        <div class="price">
-                                            <h5>$49.00</h5>
-                                        </div>
-                                        <div class="live-preview-cart">
-                                            <div class="live-preview"><a href="#">Preview</a></div>
-                                            <div class="cart"><a href="#"><i
-                                                        class="fi flaticon-shopping-cart"></i></a></div>
+                                        <div class="product-footer">
+                                            <div class="price">
+                                                <h5>{{ $pro->price }}</h5>
+                                            </div>
+                                            <div class="live-preview-cart">
+                                                <div class="live-preview"><a href="#">Xem thử</a></div>
+                                                <div class="cart">
+                                                    <form action="{{url('/addcart')}}" method="post" class="d-flex justify-content-center">
+                                                        <input type="hidden" name="theme_name" id="id" value="{{ $pro->name }}">
+                                                        <input type="hidden" name="price" value="{{ $pro->price }}">
+                                                        <input type="hidden" name="thumbnail" id="id" value="{{ $pro->thumbnail }}">
+                                                        <input type="hidden" name="cart_id" id="id" >
+                                                        <input type="hidden" name="theme_id" id="id" value="{{ $pro->id }}">
+                                                        <button class="btn" type="submit"  onclick="return confirm('Thêm Thành Công')">Thêm Vào Giỏ</button>
+                                                    </form>    
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="grid">
-                                <div class="product-img-tag">
-                                    <img src="assets/images/exclusive-product/img-3.jpg" alt>
-                                    <div class="badge badge-new">Trending</div>
-                                </div>
-                                <div class="product-details-wrap">
-                                    <div class="product-details">
-                                        <h4><a href="#">Meditouch - Medical Landing Page</a></h4>
-                                        <div class="author">By <a href="#">wpOcean</a></div>
-                                        <div class="rating">
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <span>&nbsp; (08)</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-footer">
-                                        <div class="price">
-                                            <h5>$49.00</h5>
-                                        </div>
-                                        <div class="live-preview-cart">
-                                            <div class="live-preview"><a href="#">Preview</a></div>
-                                            <div class="cart"><a href="#"><i
-                                                        class="fi flaticon-shopping-cart"></i></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grid">
-                                <div class="product-img-tag">
-                                    <img src="assets/images/exclusive-product/img-4.jpg" alt>
-                                    <div class="badge">Trending</div>
-                                </div>
-                                <div class="product-details-wrap">
-                                    <div class="product-details">
-                                        <h4><a href="#">Sportyy - Gym & Sports Theme</a></h4>
-                                        <div class="author">By <a href="#">wpOcean</a></div>
-                                        <div class="rating">
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <span>&nbsp; (08)</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-footer">
-                                        <div class="price">
-                                            <h5>$49.00</h5>
-                                        </div>
-                                        <div class="live-preview-cart">
-                                            <div class="live-preview"><a href="#">Preview</a></div>
-                                            <div class="cart"><a href="#"><i
-                                                        class="fi flaticon-shopping-cart"></i></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grid">
-                                <div class="product-img-tag">
-                                    <img src="assets/images/exclusive-product/img-5.jpg" alt>
-                                    <div class="badge">Trending</div>
-                                </div>
-                                <div class="product-details-wrap">
-                                    <div class="product-details">
-                                        <h4><a href="#">Neon - Multipurpose HTML Template</a></h4>
-                                        <div class="author">By <a href="#">wpOcean</a></div>
-                                        <div class="rating">
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <span>&nbsp; (08)</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-footer">
-                                        <div class="price">
-                                            <h5>$49.00</h5>
-                                        </div>
-                                        <div class="live-preview-cart">
-                                            <div class="live-preview"><a href="#">Preview</a></div>
-                                            <div class="cart"><a href="#"><i
-                                                        class="fi flaticon-shopping-cart"></i></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grid">
-                                <div class="product-img-tag">
-                                    <img src="assets/images/exclusive-product/img-6.jpg" alt>
-                                    <div class="badge">Trending</div>
-                                </div>
-                                <div class="product-details-wrap">
-                                    <div class="product-details">
-                                        <h4><a href="#">Lavelo - Wedding HTML Template</a></h4>
-                                        <div class="author">By <a href="#">wpOcean</a></div>
-                                        <div class="rating">
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <i class="fi flaticon-star"></i>
-                                            <span>&nbsp; (08)</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-footer">
-                                        <div class="price">
-                                            <h5>$49.00</h5>
-                                        </div>
-                                        <div class="live-preview-cart">
-                                            <div class="live-preview"><a href="#">Preview</a></div>
-                                            <div class="cart"><a href="#"><i
-                                                        class="fi flaticon-shopping-cart"></i></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <div class="pagination-wrapper pagination-wrapper-left">
                             <ul class="pg-pagination">
@@ -257,28 +104,4 @@
             </div>
         </div> <!-- end container -->
     </section>
-    <!-- end category-page-section -->
-
-
-    <!-- start news-letter-section -->
-    <section class="news-letter-section">
-        <div class="container">
-            <div class="row">
-                <div class="col col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                    <div class="newsletter">
-                        <h3>Follow us For ferther information</h3>
-                        <div class="newsletter-form">
-                            <form>
-                                <div>
-                                    <input type="text" placeholder="Enter Your Email" class="form-control">
-                                    <button type="submit">Subscrib</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- end container -->
-    </section>
-    <!-- end news-letter-section -->
 @endsection

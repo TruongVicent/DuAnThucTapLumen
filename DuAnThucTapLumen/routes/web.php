@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
+
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 $router->get('/home', 'Client\IndexController@index');
@@ -17,19 +20,43 @@ $router->get('/blog', 'Client\BlogController@index');
 // $router->put('/cart/{id}', ['as' => 'cart.update', 'uses' => 'Client\CartController@update']);
 // $router->delete('/cart/{id}', ['as' => 'cart.delete', 'uses' => 'Client\CartController@delete']);
 
+$router->get('/storage/app/public/{filename}', function ($filename) {
+    $path = storage_path('app/public/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
+
 //------------------------AUTH-----------------------//
-$router->get('/signin', 'Admin\UserController@signin');
+$router->get('/signin', 'AuthController@signin');
 $router->post('/login', 'AuthController@login');
 $router->post('/register', 'AuthController@register');
 // $router->get('/profile', 'AuthController@show');
 // $router->post('/logout', 'AuthController@logout');
-$router->get('/profile', 'AuthController@show');
-$router->post('/logout', 'AuthController@logout');
 $router->group(['middleware' => 'auth'], function () use ($router) {
-   
+    $router->get('/profile', 'AuthController@show');
+    $router->post('/logout', 'AuthController@logout');
+    $router->get('/cart/{id}', 'Client\CartController@index');
+    $router->post('/addcart', 'Client\CartController@addcart');
+    $router->post('/delete/{id}', 'Client\CartController@delete');
+
 });
 
 //------------------------ADMIN-----------------------//
+
+$router->get('/dashboard/login', 'Admin\UserController@signin');
+$router->post('/dashboard/login', 'Admin\UserController@login');
+
+
 $router->group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () use ($router) {
     $router->get('/', 'Admin\DashboardController@dashboard');
 

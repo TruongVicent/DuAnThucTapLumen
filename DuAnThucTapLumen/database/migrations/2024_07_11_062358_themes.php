@@ -23,7 +23,8 @@ return new class extends Migration
             $table->string('slug')->unique()->comment('Slug của theme');
             $table->tinyInteger('status')->comment('Trạng thái của theme: 0 - Inactive, 1 - Active');
             $table->string('file')->comment('Đường dẫn file của theme');
-            $table->foreignIdFor(ThemeCategory::class)->comment('ID danh mục của theme')->constrained();
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('theme_categories')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -34,7 +34,9 @@ class AuthController extends Controller
             return response()->json(['message' => 'Failed to register!'], 422);
         }
     }
-
+    public function signin(){
+        return view('Client.Layouts.Login');
+    }
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -55,7 +57,7 @@ class AuthController extends Controller
     {
         $user = Auth::user();
         if ($user) {
-            return response()->json($user, 200);
+            return view('Client.Layouts.Profile', compact('user'));
         } else {
             return response()->json(['message' => 'Unauthorized'], 401);
         }

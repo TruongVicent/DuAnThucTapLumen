@@ -11,19 +11,19 @@
     <title> Edefy - Degital Marketplace HTML Template </title>
 
     <link rel="icon" href="favicon.jpg" type="image/jpg" sizes="16x16">
-    <link href="assets/css/themify-icons.css" rel="stylesheet">
-    <link href="assets/css/flaticon.css" rel="stylesheet">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/animate.css" rel="stylesheet">
-    <link href="assets/css/owl.carousel.css" rel="stylesheet">
-    <link href="assets/css/owl.theme.css" rel="stylesheet">
-    <link href="assets/css/slick.css" rel="stylesheet">
-    <link href="assets/css/slick-theme.css" rel="stylesheet">
-    <link href="assets/css/swiper.min.css" rel="stylesheet">
-    <link href="assets/css/owl.transitions.css" rel="stylesheet">
-    <link href="assets/css/jquery.fancybox.css" rel="stylesheet">
-    <link href="assets/css/odometer-theme-default.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="{{ url('../assets/css/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/flaticon.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/owl.carousel.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/owl.theme.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/slick.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/slick-theme.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/swiper.min.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/owl.transitions.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/jquery.fancybox.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/odometer-theme-default.css') }}" rel="stylesheet">
+    <link href="{{ url('../assets/css/style.css') }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

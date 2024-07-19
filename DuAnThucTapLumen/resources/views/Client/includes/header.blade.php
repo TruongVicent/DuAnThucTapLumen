@@ -50,16 +50,15 @@
 
                     <div class="cart-search-contact ">
                         <div class="mini-cart">
-                            <a href="{{ url('/cart')}}" class="cart-toggle-btn"> <i class="fi flaticon-bag"></i></a>
+                            <a href="{{ url('/cart/' . Auth::user()->id)}}" class="cart-toggle-btn"> <i class="fi flaticon-bag"></i></a>
                         </div>
                         <div class="btns ">
                             @if(Auth::check())
-                            <p>Welcome, {{Auth::user()->name}}</p>
-                            <form class="btns" action="{{ url('/logout') }}" method="post">
-                                <button type="submit" class="btn btn-primary">Đăng xuất</button>
+                            <p>Chào, <a href="{{ url('/profile') }}">{{Auth::user()->name}}</a></p>
+                            <form action="{{ url('/logout') }}" method="post">
+                                <button type="submit" class="text-danger theme-btn">Đăng xuất</button>
                             </form>
                             @else
-                            
                             <a href="{{ url('/signin') }}" class="theme-btn">Đăng nhập</a>
                             @endif
                         </div>
