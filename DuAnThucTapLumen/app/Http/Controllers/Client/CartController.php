@@ -17,9 +17,8 @@ class CartController extends Controller{
      public function delete($id){
         $cartuser =Cart_detail::find($id);
         $cartuser->delete();
-        return view('Client.Layouts.Cart', compact('cartuser'));
+        return redirect('/cart/'. Auth::user()->id);
      }
-
      public function addcart(Request $request){
         // Lấy thông tin người dùng hiện tại
         $user = Auth::user();

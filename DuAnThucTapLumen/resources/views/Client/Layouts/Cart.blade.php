@@ -39,7 +39,7 @@
                             <td>{{$item->price}}</td>
                             <td><img src="{{ url('/storage/' . $item->thumbnail) }}" alt="{{ $item->name }}"></td>
                             <td>
-                                <form action="{{ url('/delete/'.$cartuser->id )}}" method="post">
+                                <form action="{{ url('/delete/'.$item->id )}}" method="post">
                                     <button   onclick="return confirm('Xóa Thành Công')">Xóa</button>
                                 </form>
                             </td>
