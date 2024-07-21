@@ -33,7 +33,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                           @foreach ($cart as $item)
+                           
+                            @foreach ($cart as $item)
                            <tr>
                             <td>{{$item->theme_name}}</td>
                             <td>{{$item->price}}</td>
@@ -43,9 +44,8 @@
                                     <button   onclick="return confirm('Xóa Thành Công')">Xóa</button>
                                 </form>
                             </td>
-                           </tr>  
-
-                           @endforeach         
+                           </tr>
+                           @endforeach   
                         </tbody>
                     </table>
                 </div>

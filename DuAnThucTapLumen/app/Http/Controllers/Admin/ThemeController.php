@@ -8,6 +8,7 @@ use App\Models\ThemeCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class ThemeController extends Controller
 {
@@ -42,18 +43,26 @@ class ThemeController extends Controller
 
         $theme->slug = $request->slug;
         $theme->status = $request->status;
-        $theme->file = $request->file;
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('files', $filename, 'public'); // Lưu file vào thư mục 'storage/app/public/thumbnails'
+            $theme->file = $path;
+        }
         $theme->category_id = $request->category_id;
         $theme->save();
 
         return redirect('/dashboard/theme');
     }
-
+    
 
     public function edit($id)
     {
+        $categories = ThemeCategory::all();
         $theme = Theme::findOrFail($id);
-        return view('Admin.Layouts.Theme.EditTheme', compact('theme'));
+        
+        return view('Admin.Layouts.Theme.EditTheme', compact('categories', 'theme'));
     }
     public function update(Request $request, $id)
     {
@@ -61,9 +70,20 @@ class ThemeController extends Controller
         $theme->name = $request->name;
         $theme->price = $request->price;
         $theme->description = $request->description;
+        if ($request->hasFile('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('thumbnails', $filename, 'public'); // Lưu file vào thư mục 'storage/app/public/thumbnails'
+            $theme->thumbnail = $path;
+        }
         $theme->slug = $request->slug;
         $theme->status = $request->status;
-        $theme->file = $request->file;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('files', $filename, 'public'); // Lưu file vào thư mục 'storage/app/public/thumbnails'
+            $theme->file = $path;
+        }
         $theme->category_id = $request->category_id;
         $theme->save();
 
@@ -74,6 +94,6 @@ class ThemeController extends Controller
         $theme = Theme::findOrFail($id);
         $theme->delete();
 
-        return response()->json(['success' => 'Danh mục đã được xóa thành công!']);
+        return redirect('/dashboard/theme');
     }
 }

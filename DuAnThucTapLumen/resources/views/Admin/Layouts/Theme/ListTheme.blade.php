@@ -18,8 +18,6 @@
                                     <th>Tên theme</th>
                                     <th>Giá</th>
                                     <th>Hình ảnh</th>
-{{--                                    <th>Đường dẫn</th>--}}
-{{--                                    <th>Trạng thái</th>--}}
                                     <th>Thư mục</th>
                                     <th>Mô tả</th>
                                     <th>Danh mục</th>

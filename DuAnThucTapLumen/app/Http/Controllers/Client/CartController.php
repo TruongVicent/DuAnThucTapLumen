@@ -11,27 +11,14 @@ class CartController extends Controller{
    
     public function index($id){
         $cartuser = Cart::where('user_id', $id)->first();
-        
-        // Kiểm tra nếu không tìm thấy giỏ hàng của người dùng
-        if (!$cartuser) {
-            return redirect('/home')->with('error', 'Cart not found.');
-        }
         $cart = Cart_detail::where('cart_id', $cartuser->id)->get();
-        if (!$cart) {
-            return redirect('/home')->with('error', 'Cart not found.');
-        }
-        return view('Client.Layouts.Cart', compact('cart', 'cartuser'));
+        return view('Client.Layouts.Cart', compact('cart','cartuser'));
     }
     
     public function delete($id){
         $cartDetail = Cart_detail::find($id);
-        
-        // Kiểm tra nếu không tìm thấy chi tiết giỏ hàng
-        if (!$cartDetail) {
-            return redirect('/cart/' . Auth::user()->id);
-        }
         $cartDetail->delete();
-        return redirect('/cart/' . Auth::user()->id)->with('success', 'Cart item deleted successfully.');
+        return redirect('/cart/' . Auth::user()->id);
     }
     
     public function addcart(Request $request){
@@ -49,7 +36,7 @@ class CartController extends Controller{
             $cartuser->save();
         }
     
-        // Thêm sản phẩm vào chi tiết giỏ hàng
+        // Thêm sản phẩm vào giỏ hàng
         $cart = new Cart_detail();
         $cart->theme_name = $request->theme_name;
         $cart->price = $request->price;
@@ -58,7 +45,7 @@ class CartController extends Controller{
         $cart->theme_id = $request->theme_id;
         $cart->save();
     
-        return redirect('/product')->with('success', 'Product added to cart successfully.');
+        return redirect('/product');
     }
     
     

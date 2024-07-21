@@ -53,7 +53,7 @@
                             @foreach ($product as $pro)
                                 <div class="grid">
                                     <div class="product-img-tag">
-                                        <img src="{{ $pro->thumbnail }}" alt="nam">
+                                        <img src="{{ url('storage/' . $pro->thumbnail) }}" alt="{{ $pro->name }}" style="max-width: 100px; max-height: 100px;">
                                         <div class="badge">Trending</div>
                                     </div>
                                     <div class="product-details-wrap">
@@ -65,7 +65,7 @@
                                                 <h5>{{ $pro->price }}</h5>
                                             </div>
                                             <div class="live-preview-cart">
-                                                <div class="live-preview"><a href="#">Xem thử</a></div>
+                                                <div class="live-preview"><a href="{{url('storage/' . $pro->file)}}">Xem thử</a></div>
                                                 <div class="cart">
                                                     <form action="{{url('/addcart')}}" method="post" class="d-flex justify-content-center">
                                                         <input type="hidden" name="theme_name" id="id" value="{{ $pro->name }}">
